@@ -4,10 +4,10 @@ Scala testing frameworks.
 This project will have the following:
 
 * It should have methods that can return booleans integers strings
-  and collections for exercising match assertions.
+  and collections for exercising match assertions. [done]
 
 * It should have a method that can raise exceptions for exercising if
-  exception was raised.
+  exception was raised. [done]
 
 * It should have methods that take an object as an argument and call
   methods on it for exercising mocks/stubs.
