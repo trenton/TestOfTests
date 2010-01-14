@@ -30,4 +30,12 @@ class UtilJunitTest {
       case e => fail("Caught unexpected exception: " + e.getMessage)
     }
   }
+
+  @Test
+  def testRepeat() = {
+    assertThat(Util.repeat("foo", 0), is(""))
+    assertThat(Util.repeat("foo", 1), is("foo"))
+    assertThat(Util.repeat("foo", 2), is("foofoo"))
+    assertThat(Util.repeat("x", 5), is("xxxxx"))
+  }
 }
