@@ -3,7 +3,7 @@ package com.runbam.testoftests
 
 object Util {
   /**
-   * Reflect returns whatever is passed into it.
+   * Returns whatever is passed into it.
    */
   def reflect[T](x: T): T = {
     x
