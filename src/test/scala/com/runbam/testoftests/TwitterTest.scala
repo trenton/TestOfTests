@@ -7,7 +7,7 @@ import org.hamcrest.Matchers._
 import org.junit.Test
 
 @Test
-class TweetTest {
+class TwitterTest {
   @Test
   def testTweetCreate = {
     val t1 = new Tweet("author", "message")
