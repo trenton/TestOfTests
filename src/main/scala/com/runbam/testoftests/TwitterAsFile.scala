@@ -8,6 +8,10 @@ class TwitterAsFile(out: File) extends Twitter {
     throw new UnsupportedOperationException
   }
 
+  def validate(post: Tweet) = {
+    throw new UnsupportedOperationException
+  }
+
   def post(post: Tweet) = {
     val writer: FileWriter = new FileWriter(out)
     writer.write(post.toString)
