@@ -3,3 +3,4 @@ testoftests.ipr
 testoftests.iws
 target
 project/boot
+lib_managed
