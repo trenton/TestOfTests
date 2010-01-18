@@ -13,7 +13,7 @@ class MessageServiceToFile(out: File) extends MessageService {
   }
 
   def post(post: Message) = {
-    val writer: FileWriter = new FileWriter(out)
+    val writer: FileWriter = new FileWriter(out, true)
     writer.write(post.toString)
     writer.write("\n")
     writer.close
