@@ -9,17 +9,17 @@ import org.hamcrest.Matchers._
 import org.junit.Test
 
 @Test
-class TwitterTest {
+class MessageJunitTest {
   @Test
   def testTweetCreate: Unit = {
-    val t1 = new Tweet("author", "message")
+    val t1 = new Message("author", "message")
     assertThat(t1.author, is("author"))
     assertThat(t1.body, is("message"))
     assertThat(t1.toString, is("@author: message"))
 
-    val bigMessage = (0 until Tweet.MAX_BODY_LENGTH + 1).foldLeft("")(_ + _)
+    val bigMessage = (0 until Message.MAX_BODY_LENGTH + 1).foldLeft("")(_ + _)
     try {
-      new Tweet("author", bigMessage)
+      new Message("author", bigMessage)
       fail("Long message should bugger us")
     }
     catch {
@@ -28,7 +28,7 @@ class TwitterTest {
     }
 
     try {
-      new Tweet("author", "")
+      new Message("author", "")
       fail("Empty message should bugger us")
     }
     catch {
@@ -42,14 +42,14 @@ class TwitterTest {
     val out: File = File.createTempFile("TwitterTest", ".txt")
     out.deleteOnExit
 
-    val twitterApi = new TwitterAsFile(out)
+    val serviceToFile = new MessageServiceToFile(out)
 
-    val tweet: Tweet = new Tweet("user", "message")
-    twitterApi.post(tweet)
+    val msg: Message = new Message("user", "message")
+    serviceToFile.post(msg)
 
     val outIterator: Iterator[String] = Source.fromFile(out).getLines
     val postFromFile = outIterator.next
-    assertThat(postFromFile, startsWith(tweet.toString))
+    assertThat(postFromFile, startsWith(msg.toString))
     assertThat(outIterator.hasNext, is(false))
   }
 }

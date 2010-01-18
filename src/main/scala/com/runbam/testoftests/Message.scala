@@ -1,9 +1,9 @@
 package com.runbam.testoftests
 
 
-class Tweet(val author: String, val body: String) {
+class Message(val author: String, val body: String) {
   // max message size is 140
-  require(body.length <= Tweet.MAX_BODY_LENGTH, "body too big")
+  require(body.length <= Message.MAX_BODY_LENGTH, "body too big")
 
   // do not allow empty messages
   require(body.length > 0, "body empty")
@@ -11,6 +11,6 @@ class Tweet(val author: String, val body: String) {
   override def toString = "@%s: %s".format(author, body)
 }
 
-object Tweet {
+object Message {
   val MAX_BODY_LENGTH = 140
 }
