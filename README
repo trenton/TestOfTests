@@ -20,6 +20,8 @@ This project will have the following:
   interface: MessageService
   implementation: MessageServiceToFile
 
+  jmock example: MessagePingerJunitTest
+
 * It should have a method that can perform a calculation like addition
   for exercising use of mock/stub with custom method:
 
