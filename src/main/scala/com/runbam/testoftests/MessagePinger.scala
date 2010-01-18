@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 
 /**
  * Example client for MessageService. Posts a message every n milliseconds
- * until shutdown is again.
+ * until shutdown is again. To shutdown, pass 'Shutdown or call shutdown
  */
 class MessagePinger(val delayMs: Long, val service: MessageService) extends Actor {
   implicit def unboxAtomicBoolean(b: AtomicBoolean): Boolean = b.get
@@ -19,7 +19,7 @@ class MessagePinger(val delayMs: Long, val service: MessageService) extends Acto
     shutdownRequested.set(true)
   }
 
-  override def start(): Actor = {
+  override def start: Actor = {
     val me = super.start
     me ! 'Ping
     me
