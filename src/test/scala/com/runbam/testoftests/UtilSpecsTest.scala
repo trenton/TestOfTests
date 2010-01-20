@@ -3,6 +3,7 @@ package com.runbam.testoftests
 import org.junit.Test
 import org.specs._
 import runner.JUnit4
+import org.scalacheck.Prop.forAll
 
 /**
  * http://code.google.com/p/specs/wiki/RunningSpecs
@@ -32,5 +33,9 @@ object UtilSpec extends Specification {
     val n = rand.nextInt(2^31 - 1)
     Util.negate(n) must_== n * -1
     Util.negate(Util.negate(n)) must_== n
+
+    //scalacheck http://code.google.com/p/scalacheck/wiki/UserGuide
+    val propReflexiveNegate = forAll {n: Int => Util.negate(Util.negate(n)) == n}
+    propReflexiveNegate.check
   }
 }
