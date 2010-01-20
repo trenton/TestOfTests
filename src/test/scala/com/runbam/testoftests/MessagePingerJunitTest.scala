@@ -1,7 +1,6 @@
 package com.runbam.testoftests
 
 
-import org.jmock.lib.legacy.ClassImposteriser
 import org.jmock.{Expectations, Mockery}
 import org.junit._
 import Assert._
@@ -16,7 +15,10 @@ class MessagePingerJunitTest {
   val context = new Mockery() {
     {
       // allows us to mock classes
-      setImposteriser(ClassImposteriser.INSTANCE);
+      // adding specs 1.6 caused compile problem (perhaps it brings
+      // a different version of jmock)
+      //import org.jmock.lib.legacy.ClassImposteriser
+      //setImposteriser(ClassImposteriser.INSTANCE);
     }
   };
 
