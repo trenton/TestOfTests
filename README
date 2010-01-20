@@ -28,3 +28,10 @@ This project will have the following:
   Message.validate could be use for this
 
 
+
+Runbook
+
+* run tests
+
+  mvn surefire-report:report -DshowSuccess=false
+  open target/site/surefire-report.html 
