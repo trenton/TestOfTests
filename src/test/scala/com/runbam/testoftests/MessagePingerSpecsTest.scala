@@ -10,12 +10,12 @@ import org.junit.Assert._
 
 class MessagePingerSpecsTest extends JUnit4(MessagePingerSpec)
 
-// :TODO: is the () needed? wtf is that?
-case class MessageMatcher(val expectedAuthor: String) extends Matcher[Message]() {
+case class MessageMatcher(val expectedAuthor: String) extends Matcher[Message] {
+  // :TODO: understand =>Class syntax
   def apply(msg: =>Message) = {
-    val result: MatcherResult = (true, "okay", "nope")
-
-    result
+    val success = "expected %s and saw %s".format(expectedAuthor, msg.author)
+    val failure = "expected %s but saw %s".format(expectedAuthor, msg.author)
+    (msg.author == expectedAuthor, success, failure)
   }
 }
 
@@ -27,7 +27,8 @@ object MessagePingerSpec extends Specification with JMocker with ClassMocker {
 
       expect {
         val messageCapture = capturingParam[Message]
-        // :TODO: learn how to do this inline (without the class)
+        // :TODO: message on failure says post failed to be called, not that the matcher failed
+        // :TODO: can this be done without the helper class?
         exactly(2).of(msgService).post(new MessageMatcher(MessagePinger.AUTHOR))
       }
 
