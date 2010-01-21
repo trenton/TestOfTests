@@ -13,28 +13,11 @@ class MessagePingerSpecsTest extends JUnit4(MessagePingerSpec)
 // :TODO: is the () needed? wtf is that?
 case class MessageMatcher(val expectedAuthor: String) extends Matcher[Message]() {
   def apply(msg: =>Message) = {
-    
-
     val result: MatcherResult = (true, "okay", "nope")
 
     result
   }
-
-  /*
-  def apply(msg: Message) = {
-
-    val t1 = new Message("author", "message")
-
-    val x = new Message("foo", "bar")
-
-    Console.println("author is %s".format(x.author))
-
-
-    assertThat(msg.asInstanceOf[Message].author, is(expectedAuthor))
-  }
-  */
 }
-
 
 // http://code.google.com/p/specs/wiki/UsingJMock
 object MessagePingerSpec extends Specification with JMocker with ClassMocker {
@@ -44,9 +27,8 @@ object MessagePingerSpec extends Specification with JMocker with ClassMocker {
 
       expect {
         val messageCapture = capturingParam[Message]
+        // :TODO: learn how to do this inline (without the class)
         exactly(2).of(msgService).post(new MessageMatcher(MessagePinger.AUTHOR))
-//        exactly(2).of(msgService).post(messageCapture.capture)
-//        exactly(2).of(msgService).post(messageCapture.author must_== MessagePinger.AUTHOR)
       }
 
       val delayMs = 2000
