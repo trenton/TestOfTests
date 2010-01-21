@@ -40,4 +40,9 @@ object UtilSpec extends Specification {
     forAll {n: Long => Util.negate(Util.negate(n)) == n} check;
     forAll {n: Float => Util.negate(Util.negate(n)) == n} check;
   }
+
+  "repeat(foo, 3) is foofoofoo" in {
+    Util.repeat("foo", 0) must be equalTo("")
+    Util.repeat("foo", 3) must be equalTo("foofoofoo")
+  }
 }
