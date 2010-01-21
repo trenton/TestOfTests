@@ -35,7 +35,9 @@ object UtilSpec extends Specification {
     Util.negate(Util.negate(n)) must_== n
 
     //scalacheck http://code.google.com/p/scalacheck/wiki/UserGuide
-    val propReflexiveNegate = forAll {n: Int => Util.negate(Util.negate(n)) == n}
-    propReflexiveNegate.check
+    //scalac gets confused without the semicolons
+    forAll {n: Int => Util.negate(Util.negate(n)) == n} check;
+    forAll {n: Long => Util.negate(Util.negate(n)) == n} check;
+    forAll {n: Float => Util.negate(Util.negate(n)) == n} check;
   }
 }
