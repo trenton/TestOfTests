@@ -47,7 +47,11 @@ class MessagePinger(val delayMs: Long, val service: MessageService) extends Acto
   }
 
   def writePing() {
-    service.post(new Message("pinger", "the time is: %s".format(System.currentTimeMillis)))
+    service.post(new Message(MessagePinger.AUTHOR, "the time is: %s".format(System.currentTimeMillis)))
 
   }
+}
+
+object MessagePinger {
+  val AUTHOR = "pinger"
 }
