@@ -1,5 +1,7 @@
 Project to evaluate and demonstrate capabilities of different
-Scala testing frameworks. 
+Scala testing frameworks. Accompanying slides can be found at
+
+  https://docs.google.com/present/edit?id=0AdO9pIGZsCr5ZGQ2NGp2NDRfNjZkbjdtcmtjMw&hl=en
 
 This project will have the following:
 
@@ -27,11 +29,7 @@ This project will have the following:
 
   Message.validate could be use for this
 
-
-
 Runbook
-
-* run tests
 
   mvn surefire-report:report -DshowSuccess=false
   open target/site/surefire-report.html 
