@@ -44,5 +44,8 @@ object UtilSpec extends Specification {
   "repeat(foo, 3) is foofoofoo" in {
     Util.repeat("foo", 0) must be equalTo("")
     Util.repeat("foo", 3) must be equalTo("foofoofoo")
+    Util.repeat("foo", 0) must be matching("")
+    Util.repeat("foo", 3) must be matching("^foofoofoo$")
+    Util.repeat("foo", 3) must have size ("foo".size * 3)
   }
 }
