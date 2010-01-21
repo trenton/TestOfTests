@@ -8,7 +8,7 @@ import org.specs.Specification
 import org.hamcrest.Matchers._
 import org.junit.Assert._
 
-class MessagePingerSpecsTest extends JUnit4(MessagePingerSpec, MessagePingerSpec2)
+class MessagePingerSpecsTest extends JUnit4(MessagePingerSpec, MessagePingerInlineMatcherSpec)
 
 case class MessageMatcher(val expectedAuthor: String) extends Matcher[Message] {
   // :TODO: understand =>Class syntax
@@ -27,7 +27,6 @@ object MessagePingerSpec extends Specification with JMocker with ClassMocker {
       expect {
         val messageCapture = capturingParam[Message]
         // :TODO: message on failure says post failed to be called, not that the matcher failed
-        // :TODO: can this be done without the helper class?
         exactly(2).of(msgService).post(new MessageMatcher(MessagePinger.AUTHOR))
       }
 
@@ -50,8 +49,6 @@ object MessagePingerInlineMatcherSpec extends Specification with JMocker with Cl
 
       expect {
         val messageCapture = capturingParam[Message]
-        // :TODO: message on failure says post failed to be called, not that the matcher failed
-        // :TODO: can this be done without the helper class?
         exactly(2).of(msgService).post(new Matcher[Message] {
           def apply(msg: =>Message) = {
             val expectedAuthor = MessagePinger.AUTHOR
