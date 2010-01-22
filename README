@@ -32,4 +32,8 @@ This project will have the following:
 Runbook
 
   mvn surefire-report:report -DshowSuccess=false
-  open target/site/surefire-report.html 
+
+  mvn surefire-report:report-only
+  open target/site/surefire-report.html
+
+  mvn test -Dtest=UtilJunitTest
